@@ -8,7 +8,7 @@ import os
 import autopy
 
 
-# C struct redefinitions 
+# C struct redefinitions FROM https://stackoverflow.com/questions/50601200/pyhon-directinput-mouse-relative-moving-act-not-as-expected
 PUL = ctypes.POINTER(ctypes.c_ulong)
 class KeyBdInput(ctypes.Structure):
     _fields_ = [("wVk", ctypes.c_ushort),
@@ -41,8 +41,8 @@ class Input(ctypes.Structure):
 
 # Actuals Functions
 def MouseMoveTo(x, y):
-    relative_x = x - 970 + 50 # + 50 for more central position
-    relative_y = y - 540 + 50
+    relative_x = x - 970 + 40 # + 50 for more central position
+    relative_y = y - 540 + 40
     extra = ctypes.c_ulong(0)
     ii_ = Input_I()
     ii_.mi = MouseInput(relative_x, relative_y, 0, 0x0001, 0, ctypes.pointer(extra))
@@ -72,8 +72,8 @@ def Compareaa():
     pix = np.array(image)
     # for i in range(510,570):
     #     for j in range(950,970):
-    for i in range(0,1080):
-        for j in range(0,1920):
+    for i in range(0,1080,10):
+        for j in range(0,1920,10):
             #pix = image.getpixel((j,i))
             if((int(pix[i][j][0])>=180)&(int(pix[i][j][0])<=255) & (int(pix[i][j][1])>=0) & (int(pix[i][j][1])<=20) & (int(pix[i][j][2])>=0) & (int(pix[i][j][2])<=40)): # & (int(pix[i][j][1])>=63) & (int(pix[i][j][1])<=93) & (int(pix[i][j][2])>=250) & (int(pix[i][j][2])<=255)
                 print("Found red at: (", j, ", ", i, ")")
