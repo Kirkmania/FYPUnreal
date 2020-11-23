@@ -41,7 +41,7 @@ class Input(ctypes.Structure):
 
 # Actuals Functions
 def MouseMoveTo(x, y):
-    relative_x = x - 970 + 40 # + 50 for more central position
+    relative_x = x - 970 + 40 # + 40 for more central position in target
     relative_y = y - 540 + 40
     extra = ctypes.c_ulong(0)
     ii_ = Input_I()
